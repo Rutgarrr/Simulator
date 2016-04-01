@@ -38,14 +38,17 @@ public class SimulatorView extends JFrame {
             }
         });
         testPanel.add(oneStep);
-        JButton hunderdStep = new JButton("Move hunderd steps");
-        hunderdStep.addActionListener(new ActionListener() {
+        JButton hundredStep = new JButton("Move hundred steps");
+        hundredStep.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                currentSim.run(100);
+                for (int i = 0; i < 100; i++) {
+                    currentSim.run(1);
+                    carParkView.updateView();
+                }
             }
         });
-        testPanel.add(hunderdStep);
+        testPanel.add(hundredStep);
 
 
         pack();
