@@ -9,6 +9,8 @@ public class SimulatorView extends JFrame {
     private int numberOfRows;
     private int numberOfPlaces;
     private Car[][][] cars;
+
+    //current simulator object is stored here
     private Simulator currentSim;
 
     public SimulatorView(int numberOfFloors, int numberOfRows, int numberOfPlaces, Simulator currentSim) {
