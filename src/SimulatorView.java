@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class SimulatorView extends JFrame {
     private CarParkView carParkView;
@@ -7,19 +9,43 @@ public class SimulatorView extends JFrame {
     private int numberOfRows;
     private int numberOfPlaces;
     private Car[][][] cars;
+    private Simulator currentSim;
 
-    public SimulatorView(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
+    public SimulatorView(int numberOfFloors, int numberOfRows, int numberOfPlaces, Simulator currentSim) {
         this.numberOfFloors = numberOfFloors;
         this.numberOfRows = numberOfRows;
         this.numberOfPlaces = numberOfPlaces;
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
-        
+        this.currentSim = currentSim;
+
         carParkView = new CarParkView();
 
         Container contentPane = getContentPane();
         //contentPane.add(stepLabel, BorderLayout.NORTH);
         contentPane.add(carParkView, BorderLayout.CENTER);
         //contentPane.add(population, BorderLayout.SOUTH);
+
+        //Creation of testpanel and the buttons to move the time and and hunderd steps
+        JPanel testPanel = new JPanel();
+        contentPane.add(testPanel, BorderLayout.SOUTH);
+        JButton oneStep = new JButton("Move one step");
+        oneStep.addActionListener(new ActionListener()  {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                currentSim.run(1);
+            }
+        });
+        testPanel.add(oneStep);
+        JButton hunderdStep = new JButton("Move hunderd steps");
+        hunderdStep.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                currentSim.run(100);
+            }
+        });
+        testPanel.add(hunderdStep);
+
+
         pack();
         setVisible(true);
 

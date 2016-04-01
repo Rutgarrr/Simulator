@@ -24,12 +24,17 @@ public class Simulator {
         entranceCarQueue = new CarQueue();
         paymentCarQueue = new CarQueue();
         exitCarQueue = new CarQueue();
-        simulatorView = new SimulatorView(3, 6, 30);
+        simulatorView = new SimulatorView(3, 6, 30, this);
     }
 
     public static void main(String [] args) {
         Simulator simulator = new Simulator();
-        simulator.run();
+    }
+
+    public void run(int minutes) {
+        for (int i = 0; i < minutes; i++) {
+            tick();
+        }
     }
 
     public void run() {
