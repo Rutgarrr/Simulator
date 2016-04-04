@@ -44,7 +44,8 @@ public class SimulatorView extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 for (int i = 0; i < 100; i++) {
                     currentSim.run(1);
-                    carParkView.updateView();
+                    paintComponents(carParkView.getGraphics());
+                    //carParkView.updateView();
                 }
             }
         });
