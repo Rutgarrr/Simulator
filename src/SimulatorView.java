@@ -22,6 +22,7 @@ public class SimulatorView extends JFrame {
 
         carParkView = new CarParkView();
 
+        // TODO Move and refactor GUI, MVC
         Container contentPane = getContentPane();
         //contentPane.add(stepLabel, BorderLayout.NORTH);
         contentPane.add(carParkView, BorderLayout.CENTER);
@@ -211,7 +212,7 @@ public class SimulatorView extends JFrame {
                         Location location = new Location(floor, row, place);
                         Car car = getCarAt(location);
                         Color color = car == null ? Color.white : Color.red;
-                        drawPlace(graphics, location, color);
+                        drawPlace(graphics, location, color); // TODO Add different colors for different subscriptions
                     }
                 }
             }

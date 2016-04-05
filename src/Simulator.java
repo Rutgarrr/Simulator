@@ -2,6 +2,7 @@ import java.util.Random;
 
 public class Simulator {
 
+    // TODO Add more statistics
     private CarQueue entranceCarQueue;
     private CarQueue paymentCarQueue;
     private CarQueue exitCarQueue;
@@ -43,6 +44,7 @@ public class Simulator {
         }
     }
 
+    // TODO Refactor tick()
     private void tick() {
         // Advance the time by one minute.
         minute++;
@@ -111,6 +113,7 @@ public class Simulator {
                 break;
             }
             // TODO Handle payment.
+            // TODO Handle passholders
             simulatorView.removeCarAt(car.getLocation());
             exitCarQueue.addCar(car);
         }
