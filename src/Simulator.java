@@ -47,6 +47,11 @@ public class Simulator {
         }
     }
 
+    public void setPassHolder(int passHolder)
+    {
+        this.passHolder = passHolder;
+    }
+
     // TODO Refactor tick()
     private void tick() {
         // Advance the time by one minute.
