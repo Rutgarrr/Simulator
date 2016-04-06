@@ -12,6 +12,9 @@ public class Simulator {
     private int hour = 0;
     private int minute = 0;
 
+    // Generates the initial amount of passholders
+    private int passHolder = 10;
+
     private int tickPause = 100;
 
     int weekDayArrivals= 50; // average number of arriving cars per hour
