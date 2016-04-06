@@ -10,6 +10,7 @@ public class SimulatorView extends JFrame {
     private int numberOfPlaces;
     private Car[][][] cars;
 
+
     //current simulator object is stored here
     private Simulator currentSim;
 
@@ -113,6 +114,7 @@ public class SimulatorView extends JFrame {
                 for (int row = 0; row < getNumberOfRows(); row++) {
                     for (int place = 0; place < getNumberOfPlaces(); place++) {
                         Location location = new Location(floor, row, place);
+
                         if (getCarAt(location) == null) {
                             return location;
                         }
