@@ -13,7 +13,9 @@ public class Simulator {
     private int minute = 0;
 
     // Generates the initial amount of passholders
-    private int passHolder = 10;
+    private int maxPassHolder = 20;
+    //This variable keeps track of the oumnt of passholder car objects
+    private int passCarAmount = 0;
 
     private int tickPause = 100;
 
@@ -47,9 +49,9 @@ public class Simulator {
         }
     }
 
-    public void setPassHolder(int passHolder)
+    public void setMaxPassHolder(int maxPassHolder)
     {
-        this.passHolder = passHolder;
+        this.maxPassHolder = maxPassHolder;
     }
 
     // TODO Refactor tick()
@@ -82,8 +84,14 @@ public class Simulator {
 
         // Add the cars to the back of the queue.
         for (int i = 0; i < numberOfCarsPerMinute; i++) {
-            Car car = new AdHocCar();
-            entranceCarQueue.addCar(car);
+            if(random.nextInt(10) < 2 && passCarAmount <= maxPassHolder){
+                Car car = new PassHolderCar();
+                entranceCarQueue.addCar(car);
+                passCarAmount++;
+            }else{
+                Car car = new AdHocCar();
+                entranceCarQueue.addCar(car);
+            }
         }
 
         // Remove car from the front of the queue and assign to a parking space.
@@ -110,8 +118,13 @@ public class Simulator {
             if (car == null) {
                 break;
             }
-            car.setIsPaying(true);
-            paymentCarQueue.addCar(car);
+            //Checks if the car is an passholder car, if yes then he can skip the payment queue
+            if (car instanceof PassHolderCar) {
+                exitCarQueue.addCar(car);
+            }else{
+                car.setIsPaying(true);
+                paymentCarQueue.addCar(car);
+            }
         }
 
         // Let cars pay.
@@ -131,6 +144,10 @@ public class Simulator {
             Car car = exitCarQueue.removeCar();
             if (car == null) {
                 break;
+            }
+            // If the leaving car is a passholder car, then decrease the amount of passCarAmount by one.
+            if (car instanceof PassHolderCar){
+                passCarAmount--;
             }
             // Bye!
         }
