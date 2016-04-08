@@ -84,7 +84,7 @@ public class Simulator {
 
         // Add the cars to the back of the queue.
         for (int i = 0; i < numberOfCarsPerMinute; i++) {
-            if(random.nextInt(10) < 2 && passCarAmount < maxPassHolder){
+            if(random.nextInt(100) < 5 && passCarAmount < maxPassHolder){
                 Car car = new PassHolderCar();
                 entranceCarQueue.addCar(car);
                 passCarAmount++;
