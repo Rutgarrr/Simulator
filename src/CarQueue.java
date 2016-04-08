@@ -1,5 +1,3 @@
-package nl.simulator.mvc.old;
-
 import java.util.LinkedList;
 import java.util.Queue;
 

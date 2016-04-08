@@ -1,5 +1,3 @@
-package nl.simulator.mvc.old;
-
 public abstract class Car {
 
     private Location location;
@@ -7,7 +5,7 @@ public abstract class Car {
     private boolean isPaying;
 
     /**
-     * Constructor for objects of class nl.simulator.mvc.old.Car
+     * Constructor for objects of class Car
      */
     public Car() {
 
