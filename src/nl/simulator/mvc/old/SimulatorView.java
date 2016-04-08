@@ -1,3 +1,5 @@
+package nl.simulator.mvc.old;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -29,7 +31,7 @@ public class SimulatorView extends JFrame {
         contentPane.add(carParkView, BorderLayout.CENTER);
         //contentPane.add(population, BorderLayout.SOUTH);
 
-        //Creation of testpanel and the buttons to move the time and and hunderd steps
+        //Creation of testpanel and the buttons to move the time and and hundred steps
         JPanel testPanel = new JPanel();
         contentPane.add(testPanel, BorderLayout.SOUTH);
         JButton oneStep = new JButton("Move one step");

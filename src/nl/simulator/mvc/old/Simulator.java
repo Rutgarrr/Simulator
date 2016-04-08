@@ -1,3 +1,5 @@
+package nl.simulator.mvc.old;
+
 import java.util.Random;
 
 public class Simulator {
@@ -33,9 +35,11 @@ public class Simulator {
         simulatorView = new SimulatorView(3, 6, 30, this);
     }
 
+    /*
     public static void main(String [] args) {
         Simulator simulator = new Simulator();
     }
+    */
 
     public void run(int minutes) {
         for (int i = 0; i < minutes; i++) {
