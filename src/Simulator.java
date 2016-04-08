@@ -14,7 +14,7 @@ public class Simulator {
 
     // Generates the initial amount of passholders
     private int maxPassHolder = 20;
-    //This variable keeps track of the oumnt of passholder car objects
+    //This variable keeps track of the amount of passholder car objects.
     private int passCarAmount = 0;
 
     private int tickPause = 100;
@@ -84,7 +84,7 @@ public class Simulator {
 
         // Add the cars to the back of the queue.
         for (int i = 0; i < numberOfCarsPerMinute; i++) {
-            if(random.nextInt(10) < 2 && passCarAmount <= maxPassHolder){
+            if(random.nextInt(10) < 2 && passCarAmount < maxPassHolder){
                 Car car = new PassHolderCar();
                 entranceCarQueue.addCar(car);
                 passCarAmount++;
@@ -120,6 +120,7 @@ public class Simulator {
             }
             //Checks if the car is an passholder car, if yes then he can skip the payment queue
             if (car instanceof PassHolderCar) {
+                simulatorView.removeCarAt(car.getLocation());
                 exitCarQueue.addCar(car);
             }else{
                 car.setIsPaying(true);
