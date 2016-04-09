@@ -1,10 +1,12 @@
 package nl.simulator.mvc.old;
+import java.awt.*;
 
 public abstract class Car {
 
     private Location location;
     private int minutesLeft;
     private boolean isPaying;
+    private Color color;
 
     /**
      * Constructor for objects of class nl.simulator.mvc.old.Car
@@ -39,6 +41,14 @@ public abstract class Car {
 
     public void tick() {
         minutesLeft--;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
     }
 
 }

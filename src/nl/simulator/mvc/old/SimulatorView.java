@@ -170,8 +170,6 @@ public class SimulatorView extends JFrame {
         private Dimension size;
         private Image carParkImage;
 
-        // Color for car(s)
-        Color purple = new Color(96, 0, 120);
 
         /**
          * Constructor for objects of class CarPark
@@ -218,17 +216,8 @@ public class SimulatorView extends JFrame {
                     for(int place = 0; place < getNumberOfPlaces(); place++) {
                         Location location = new Location(floor, row, place);
                         Car car = getCarAt(location);
-                        // Check the instance of the car
-                        if(car instanceof PassHolderCar) {
-                            Color color = car == null ? Color.white : purple;
-                            drawPlace(graphics, location, color);
-                        }else{
-                            Color color = car == null ? Color.white : Color.red;
-                            drawPlace(graphics, location, color);
-                        }
-
-
-
+                        Color color = car == null ? Color.white : car.getColor();
+                        drawPlace(graphics, location, color);
                     }
                 }
             }
