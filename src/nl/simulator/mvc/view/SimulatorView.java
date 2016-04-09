@@ -1,4 +1,8 @@
-package nl.simulator.mvc.old;
+package nl.simulator.mvc.view;
+
+import nl.simulator.mvc.model.Car;
+import nl.simulator.mvc.model.Location;
+import nl.simulator.mvc.model.Simulator;
 
 import javax.swing.*;
 import java.awt.*;

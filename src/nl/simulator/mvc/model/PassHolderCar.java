@@ -1,4 +1,4 @@
-package nl.simulator.mvc.old;
+package nl.simulator.mvc.model;
 
 import java.awt.*;
 

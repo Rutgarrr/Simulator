@@ -1,4 +1,4 @@
-package nl.simulator.mvc.old;
+package nl.simulator.mvc.model;
 import java.awt.*;
 
 public abstract class Car {
@@ -9,7 +9,7 @@ public abstract class Car {
     private Color color;
 
     /**
-     * Constructor for objects of class nl.simulator.mvc.old.Car
+     * Constructor for objects of class nl.simulator.mvc.model.Car
      */
     public Car() {
 

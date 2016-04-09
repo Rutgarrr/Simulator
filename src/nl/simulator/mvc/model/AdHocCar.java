@@ -1,4 +1,4 @@
-package nl.simulator.mvc.old;
+package nl.simulator.mvc.model;
 
 // TODO Create new subclass for passholders
 public class AdHocCar extends Car {
