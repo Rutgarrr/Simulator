@@ -24,12 +24,12 @@ public class Simulator {
 
     private int tickPause = 100;
 
-    int weekDayArrivals= 50; // average number of arriving cars per hour
-    int weekendArrivals = 90; // average number of arriving cars per hour
+    private int weekDayArrivals= 50; // average number of arriving cars per hour
+    private int weekendArrivals = 90; // average number of arriving cars per hour
 
-    int enterSpeed = 3; // number of cars that can enter per minute
-    int paymentSpeed = 10; // number of cars that can pay per minute
-    int exitSpeed = 9; // number of cars that can leave per minute
+    private int enterSpeed = 3; // number of cars that can enter per minute
+    private int paymentSpeed = 10; // number of cars that can pay per minute
+    private int exitSpeed = 9; // number of cars that can leave per minute
 
     public Simulator() {
         entranceCarQueue = new CarQueue();
