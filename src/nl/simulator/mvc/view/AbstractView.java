@@ -8,13 +8,13 @@ import javax.swing.*;
  * Created by Bugstorm on 9-4-2016.
  */
 public class AbstractView extends JPanel {
-    protected Simulator model;
+    protected Simulator currentSim;
 
-    public AbstractView(Simulator model) {
-        this.model = model;
+    public AbstractView(Simulator currentSim) {
+        this.currentSim = currentSim;
     }
 
-    public Simulator getModel() {
-        return model;
+    public Simulator getCurrentSim() {
+        return currentSim;
     }
 }

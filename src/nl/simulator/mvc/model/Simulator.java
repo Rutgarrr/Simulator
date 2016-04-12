@@ -38,20 +38,8 @@ public class Simulator {
         simulatorView = new SimulatorView(3, 6, 30, this); //TODO Remove!
     }
 
-    /*
-    public static void main(String [] args) {
-        Simulator simulator = new Simulator();
-    }
-    */
-
     public void run(int minutes) {
         for (int i = 0; i < minutes; i++) {
-            tick();
-        }
-    }
-
-    public void run() {
-        for (int i = 0; i < 10000; i++) {
             tick();
         }
     }

@@ -8,7 +8,7 @@ import nl.simulator.mvc.model.Simulator;
  */
 public class StatsView extends AbstractView {
 
-    public StatsView(Simulator model) {
-        super(model);
+    public StatsView(Simulator currentSim) {
+        super(currentSim);
     }
 }
