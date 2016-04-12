@@ -13,10 +13,6 @@ public class Simulator {
     private CarQueue exitCarQueue;
     private SimulatorView simulatorView;
 
-    private int day = 0;
-    private int hour = 0;
-    private int minute = 0;
-
     // Generates the initial amount of passholders
     private int maxPassHolder = 20;
 
@@ -32,10 +28,13 @@ public class Simulator {
     private int paymentSpeed = 10; // number of cars that can pay per minute
     private int exitSpeed = 9; // number of cars that can leave per minute
 
+    private Time time;
+
     public Simulator() {
         entranceCarQueue = new CarQueue();
         paymentCarQueue = new CarQueue();
         exitCarQueue = new CarQueue();
+        time = new Time();
         simulatorView = new SimulatorView(3, 6, 30, this); //TODO Remove!
     }
 
@@ -52,24 +51,13 @@ public class Simulator {
 
     // TODO Refactor tick()
     private void tick() {
-        // Advance the time by one minute.
-        minute++;
-        while (minute > 59) {
-            minute -= 60;
-            hour++;
-        }
-        while (hour > 23) {
-            hour -= 24;
-            day++;
-        }
-        while (day > 6) {
-            day -= 7;
-        }
+        //update time(duh)
+        int[] fullTime = time.updateTime();
 
         Random random = new Random();
 
         // Get the average number of cars that arrive per hour.
-        int averageNumberOfCarsPerHour = day < 5
+        int averageNumberOfCarsPerHour = fullTime[2] < 5
                 ? weekDayArrivals
                 : weekendArrivals;
 
