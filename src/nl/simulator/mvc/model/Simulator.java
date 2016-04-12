@@ -21,7 +21,7 @@ public class Simulator {
 
     private int tickPause = 100;
 
-    private int weekDayArrivals= 50; // average number of arriving cars per hour
+    private int weekDayArrivals = 50; // average number of arriving cars per hour
     private int weekendArrivals = 90; // average number of arriving cars per hour
 
     private int enterSpeed = 3; // number of cars that can enter per minute
@@ -119,7 +119,6 @@ public class Simulator {
                 break;
             }
             // TODO Handle payment.
-            // TODO Handle passholders
             simulatorView.removeCarAt(car.getLocation());
             exitCarQueue.addCar(car);
         }

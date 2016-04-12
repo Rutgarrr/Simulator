@@ -7,7 +7,7 @@ import javax.swing.*;
 /**
  * Created by Bugstorm on 9-4-2016.
  */
-public class AbstractView extends JPanel {
+public abstract class AbstractView extends JPanel {
     protected Simulator currentSim;
 
     public AbstractView(Simulator currentSim) {
