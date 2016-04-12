@@ -168,7 +168,6 @@ public class Simulator {
         this.maxPassHolder = maxPassHolder;
     }
 
-    // TODO Refactor tick()
     private void tick() {
         //update time(duh)
         int[] fullTime = time.updateTime();
