@@ -1,6 +1,8 @@
 package nl.simulator.mvc.main;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.io.*;
 
 import nl.simulator.mvc.controller.Controller;
 import nl.simulator.mvc.model.Simulator;
@@ -42,5 +44,15 @@ public class Main {
         screen.setVisible(true);
 
         carParkView.updateView();
+        setIcon();
+    }
+
+    private void setIcon() {
+        try {
+            screen.setIconImage(ImageIO.read(new File("res/carIcon.png")));
+        }
+        catch (IOException exc) {
+            exc.printStackTrace();
+        }
     }
 }
