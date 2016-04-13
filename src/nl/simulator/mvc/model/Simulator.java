@@ -41,7 +41,11 @@ public class Simulator {
         exitCarQueue = new CarQueue();
         time = new Time();
         random = new Random();
-        simulatorView = new SimulatorView(3, 6, 30, this); //TODO Remove!
+    }
+
+    // To be converted to addViews, ArrayList<View>.
+    public void addSimulatorView(SimulatorView simulatorView) {
+        this.simulatorView = simulatorView;
     }
 
     public void run(int minutes) {
@@ -184,8 +188,8 @@ public class Simulator {
         letCarsLeave();
 
         // Update the car park view.
-        simulatorView.updateView();
-
+        simulatorView.updateView(); // Will be replaced with updateViews()
+        simulatorView.paint();
         pause();
     }
 }

@@ -17,56 +17,23 @@ public class SimulatorView extends JFrame {
     private Car[][][] cars;
 
 
-    //current simulator object is stored here, not used
-    private Simulator currentSim; // Not necessary
-
     public SimulatorView(int numberOfFloors, int numberOfRows, int numberOfPlaces, Simulator currentSim) {
         this.numberOfFloors = numberOfFloors;
         this.numberOfRows = numberOfRows;
         this.numberOfPlaces = numberOfPlaces;
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
-        this.currentSim = currentSim; // Not necessary, not used
+    }
 
-        carParkView = new CarparkView(currentSim, this);
-
-        // TODO Move and refactor GUI, MVC
-        Container contentPane = getContentPane();
-        //contentPane.add(stepLabel, BorderLayout.NORTH);
-        contentPane.add(carParkView, BorderLayout.CENTER);
-        //contentPane.add(population, BorderLayout.SOUTH);
-
-        //Creation of testpanel and the buttons to move the time and and hundred steps
-        JPanel testPanel = new JPanel();
-        contentPane.add(testPanel, BorderLayout.SOUTH);
-        JButton oneStep = new JButton("Move one step");
-        oneStep.addActionListener(new ActionListener()  {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                currentSim.run(1);
-            }
-        });
-        testPanel.add(oneStep);
-        JButton hundredStep = new JButton("Move hundred steps");
-        hundredStep.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                for (int i = 0; i < 100; i++) {
-                    currentSim.run(1);
-                    paintComponents(carParkView.getGraphics());
-                }
-            }
-        });
-        testPanel.add(hundredStep);
-
-
-        pack();
-        setVisible(true);
-
-        updateView();
+    public void addCarparkView(CarparkView carParkView) {
+        this.carParkView = carParkView;
     }
 
     public void updateView() {
         carParkView.updateView();
+    }
+
+    public Graphics getGraphics() {
+        return carParkView.getGraphics();
     }
     
      public int getNumberOfFloors() {
@@ -167,4 +134,8 @@ public class SimulatorView extends JFrame {
             }
             return true;
         }
+
+    public void paint() {
+        carParkView.paintComponent(carParkView.getGraphics());
+    }
 }
