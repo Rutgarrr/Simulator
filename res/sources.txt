@@ -1,0 +1,2 @@
+carIcon.png
+  Nicolas Mollet (http://mapicons.nicolasmollet.com/)
