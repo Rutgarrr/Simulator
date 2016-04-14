@@ -1,7 +1,6 @@
 package nl.simulator.mvc.model;
 
-import nl.simulator.mvc.view.AbstractView;
-import nl.simulator.mvc.view.SimulatorView;
+import nl.simulator.mvc.view.*;
 
 
 import java.util.ArrayList;
@@ -13,7 +12,7 @@ public class Simulator implements Runnable {
     private CarQueue entranceCarQueue;
     private CarQueue paymentCarQueue;
     private CarQueue exitCarQueue;
-    private SimulatorView simulatorView;
+    private CarparkHandler carparkHandler;
     private Boolean running;
     private ArrayList<AbstractView> views;
 
@@ -49,8 +48,8 @@ public class Simulator implements Runnable {
     }
 
     // To be converted to addViews, ArrayList<View>.
-    public void addSimulatorView(SimulatorView simulatorView) {
-        this.simulatorView = simulatorView;
+    public void addCarparkHandler(CarparkHandler carparkHandler) {
+        this.carparkHandler = carparkHandler;
     }
 
     public void run(int minutes) {
@@ -118,9 +117,9 @@ public class Simulator implements Runnable {
                 break;
             }
             // Find a space for this car.
-            Location freeLocation = simulatorView.getFirstFreeLocation();
+            Location freeLocation = carparkHandler.getFirstFreeLocation();
             if (freeLocation != null) {
-                simulatorView.setCarAt(freeLocation, car);
+                carparkHandler.setCarAt(freeLocation, car);
                 int stayMinutes = (int) (15 + random.nextFloat() * 10 * 60);
                 car.setMinutesLeft(stayMinutes);
             }
@@ -132,13 +131,13 @@ public class Simulator implements Runnable {
     private void addCarToExitQueue(){
 
         while (true) {
-            Car car = simulatorView.getFirstLeavingCar();
+            Car car = carparkHandler.getFirstLeavingCar();
             if (car == null) {
                 break;
             }
             //Checks if the car is an passholder car, if yes then he can skip the payment queue
             if (car instanceof PassHolderCar || car instanceof ReservationCar) {
-                simulatorView.removeCarAt(car.getLocation());
+                carparkHandler.removeCarAt(car.getLocation());
                 exitCarQueue.addCar(car);
             }else{
                 car.setIsPaying(true);
@@ -155,8 +154,7 @@ public class Simulator implements Runnable {
             if (car == null) {
                 break;
             }
-            // TODO Handle payment.
-            simulatorView.removeCarAt(car.getLocation());
+            carparkHandler.removeCarAt(car.getLocation());
             exitCarQueue.addCar(car);
         }
     }
@@ -212,15 +210,14 @@ public class Simulator implements Runnable {
 
 
         // Perform car park tick.
-        simulatorView.tick();
+        carparkHandler.tick();
 
         addCarToExitQueue();
         letCarsPay();
         letCarsLeave();
 
         // Update the car park view.
-        simulatorView.updateView(); // Will be replaced with updateViews()
-        simulatorView.paint();
+        updateViews();
         pause();
     }
 }

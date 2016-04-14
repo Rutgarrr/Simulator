@@ -7,7 +7,7 @@ import java.io.*;
 import nl.simulator.mvc.controller.Controller;
 import nl.simulator.mvc.model.Simulator;
 import nl.simulator.mvc.view.CarparkView;
-import nl.simulator.mvc.view.SimulatorView;
+import nl.simulator.mvc.model.CarparkHandler;
 
 import java.awt.*;
 
@@ -18,19 +18,18 @@ import java.awt.*;
  */
 public class Main {
     private Simulator simulator;
-    private SimulatorView simulatorView;
+    private CarparkHandler carparkHandler;
     private CarparkView carParkView;
     private Controller simulatorController;
     private JFrame screen;
 
     public Main() {
         simulator = new Simulator();
-        simulatorView = new SimulatorView(3, 6, 30, simulator);
-        carParkView = new CarparkView(simulator, simulatorView);
+        carparkHandler = new CarparkHandler(3, 6, 30);
+        carParkView = new CarparkView(simulator, carparkHandler);
         simulatorController = new Controller(simulator);
 
-        simulator.addSimulatorView(simulatorView);
-        simulatorView.addCarparkView(carParkView);
+        simulator.addCarparkHandler(carparkHandler);
 
         screen =  new JFrame("Carpark simulator");
         Container contentPane = screen.getContentPane();

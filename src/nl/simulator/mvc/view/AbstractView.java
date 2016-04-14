@@ -9,10 +9,12 @@ import javax.swing.*;
  */
 public abstract class AbstractView extends JPanel {
     protected Simulator currentSim;
+    private Boolean isGraphical;
 
     public AbstractView(Simulator currentSim) {
         this.currentSim = currentSim;
         currentSim.addView(this);
+        isGraphical = false;
     }
 
     public Simulator getCurrentSim() {
@@ -20,4 +22,12 @@ public abstract class AbstractView extends JPanel {
     }
 
     public void updateView() { }
+
+    public Boolean getIsGraphical() {
+        return isGraphical;
+    }
+
+    protected void setIsGraphical(boolean isGraphical) {
+        this.isGraphical = isGraphical;
+    }
 }

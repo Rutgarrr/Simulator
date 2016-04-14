@@ -3,6 +3,7 @@ package nl.simulator.mvc.view;
 import nl.simulator.mvc.model.Car;
 import nl.simulator.mvc.model.Location;
 import nl.simulator.mvc.model.Simulator;
+import nl.simulator.mvc.model.CarparkHandler;
 
 import java.awt.*;
 
@@ -12,15 +13,16 @@ import java.awt.*;
 public class CarparkView extends AbstractView {
     private Dimension size;
     private Image carParkImage;
-    private SimulatorView simulatorView;
+    private CarparkHandler carparkHandler;
 
     /**
      * Constructor for objects of class CarPark
      */
-    public CarparkView(Simulator currentSim, SimulatorView simulatorView) {
+    public CarparkView(Simulator currentSim, CarparkHandler carparkHandler) {
         super(currentSim);
         size = new Dimension(0, 0);
-        this.simulatorView = simulatorView;
+        this.carparkHandler = carparkHandler;
+        setIsGraphical(true);
     }
 
     /**
@@ -57,11 +59,11 @@ public class CarparkView extends AbstractView {
             carParkImage = createImage(size.width, size.height);
         }
         Graphics graphics = carParkImage.getGraphics();
-        for(int floor = 0; floor < simulatorView.getNumberOfFloors(); floor++) {
-            for(int row = 0; row < simulatorView.getNumberOfRows(); row++) {
-                for(int place = 0; place < simulatorView.getNumberOfPlaces(); place++) {
+        for(int floor = 0; floor < carparkHandler.getNumberOfFloors(); floor++) {
+            for(int row = 0; row < carparkHandler.getNumberOfRows(); row++) {
+                for(int place = 0; place < carparkHandler.getNumberOfPlaces(); place++) {
                     Location location = new Location(floor, row, place);
-                    Car car = simulatorView.getCarAt(location);
+                    Car car = carparkHandler.getCarAt(location);
                     Color color = car == null ? Color.white : car.getColor();
                     drawPlace(graphics, location, color);
                 }
