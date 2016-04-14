@@ -49,6 +49,7 @@ public class CarparkView extends AbstractView {
         }
     }
 
+    @Override
     public void updateView() {
         // Create a new car park image if the size has changed.
         if (!size.equals(getSize())) {

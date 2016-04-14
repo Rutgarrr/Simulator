@@ -12,9 +12,12 @@ public abstract class AbstractView extends JPanel {
 
     public AbstractView(Simulator currentSim) {
         this.currentSim = currentSim;
+        currentSim.addView(this);
     }
 
     public Simulator getCurrentSim() {
         return currentSim;
     }
+
+    public void updateView() { }
 }

@@ -1,8 +1,10 @@
 package nl.simulator.mvc.model;
 
+import nl.simulator.mvc.view.AbstractView;
 import nl.simulator.mvc.view.SimulatorView;
 
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Simulator implements Runnable {
@@ -13,6 +15,7 @@ public class Simulator implements Runnable {
     private CarQueue exitCarQueue;
     private SimulatorView simulatorView;
     private Boolean running;
+    private ArrayList<AbstractView> views;
 
     // Generates the initial amount of passholders
     private int maxPassHolder = 20;
@@ -42,6 +45,7 @@ public class Simulator implements Runnable {
         exitCarQueue = new CarQueue();
         time = new Time();
         random = new Random();
+        views =  new ArrayList<AbstractView>();
     }
 
     // To be converted to addViews, ArrayList<View>.
@@ -187,6 +191,16 @@ public class Simulator implements Runnable {
     public void setMaxPassHolder(int maxPassHolder)
     {
         this.maxPassHolder = maxPassHolder;
+    }
+
+    public void addView(AbstractView view) {
+        views.add(view);
+    }
+
+    public void updateViews() {
+        for (AbstractView view:views) {
+            view.updateView();
+        }
     }
 
     private void tick() {
