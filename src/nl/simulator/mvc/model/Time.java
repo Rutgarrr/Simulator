@@ -16,7 +16,8 @@ public class Time {
     public Time(){
         minute = 0;
         hour = 0;
-        day = 0;
+        day = 1;
+        week = 1;
         time = new int[5];
     }
 
