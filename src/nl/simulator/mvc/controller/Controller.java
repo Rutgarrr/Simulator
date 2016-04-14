@@ -12,7 +12,7 @@ public class Controller extends AbstractController implements ActionListener{
     private Simulator simulator;
     private JButton step1;
     private JButton start;
-    private JButton stop;
+    private JButton pause;
 
     public Controller(Simulator simulator) {
         super(simulator);
@@ -20,14 +20,14 @@ public class Controller extends AbstractController implements ActionListener{
 
         step1 = new JButton("1 step");
         start = new JButton("Start");
-        stop = new JButton("Stop");
+        pause = new JButton("Pause");
         step1.addActionListener(this);
         start.addActionListener(this);
-        stop.addActionListener(this);
+        pause.addActionListener(this);
 
         this.add(step1);
         this.add(start);
-        this.add(stop);
+        this.add(pause);
 
         setVisible(true);
     }
@@ -36,9 +36,9 @@ public class Controller extends AbstractController implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == step1) {
             simulator.run(1);
-        } else if(e.getSource() == start) {
+        } else if(e.getSource() == start && !simulator.isRunning()) {
             simulator.start();
-        } else if(e.getSource() == stop) {
+        } else if(e.getSource() == pause) {
             simulator.stop();
         }
     }

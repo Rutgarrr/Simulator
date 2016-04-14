@@ -3,6 +3,7 @@ package nl.simulator.mvc.view;
 import nl.simulator.mvc.model.Simulator;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 /**
  * Created by Bugstorm on 9-4-2016.
@@ -10,6 +11,8 @@ import javax.swing.*;
  */
 public class StatsView extends AbstractView {
 
+    JLabel date;
+    JLabel clock;
     JLabel adHocCars;
     JLabel passHolderCars;
     JLabel totalCars;
@@ -17,31 +20,70 @@ public class StatsView extends AbstractView {
     JLabel carsInPayment;
     JLabel carsInExit;
 
+    private int[] time;
+
     public StatsView(Simulator currentSim) {
         super(currentSim);
+        time = new int[5];
+
+        EmptyBorder topBorder = new EmptyBorder(60, 20, 5, 0);
+        EmptyBorder clockBorder = new EmptyBorder(5, 65, 5, 0);
+        EmptyBorder normBorder = new EmptyBorder(0, 0, 5, 0);
+
+        date = new JLabel();
+        clock = new JLabel();
         adHocCars = new JLabel();
-        this.add(adHocCars);
         passHolderCars = new JLabel();
-        this.add(passHolderCars);
         totalCars = new JLabel();
-        this.add(totalCars);
         carsInEntrance = new JLabel();
-        this.add(carsInEntrance);
         carsInPayment = new JLabel();
-        this.add(carsInPayment);
         carsInExit = new JLabel();
+
+        date.setBorder(topBorder);
+        clock.setBorder(clockBorder);
+        adHocCars.setBorder(normBorder);
+        passHolderCars.setBorder(normBorder);
+        totalCars.setBorder(normBorder);
+        carsInEntrance.setBorder(normBorder);
+        carsInPayment.setBorder(normBorder);
+        carsInExit.setBorder(normBorder);
+
+        this.add(date);
+        this.add(clock);
+        this.add(adHocCars);
+        this.add(passHolderCars);
+        this.add(totalCars);
+        this.add(carsInEntrance);
+        this.add(carsInPayment);
         this.add(carsInExit);
+
         updateView();
 
     }
 
     public void updateView(){
+        updateTime();
+        setDate();
+        setClock();
         setAdHocCars();
         setPassHolderCars();
         setTotalCars();
         setCarsInEntrance();
         setCarsInPayment();
         setCarsInExit();
+    }
+
+    private void setClock() {
+        String minutes = String.valueOf(time[0]);
+        if (time[0] < 10) {
+            minutes = "0" + minutes;
+        }
+
+        clock.setText(time[1] + ":" + minutes);
+    }
+
+    private void setDate() {
+        date.setText("Week: " + time[3] + "     Day: " + time[2]);
     }
 
     private void setAdHocCars(){
@@ -66,5 +108,9 @@ public class StatsView extends AbstractView {
 
     private void setCarsInExit(){
         carsInExit.setText("Amount of cars in exit queue " + currentSim.totalCarsInExit());
+    }
+
+    private void updateTime() {
+        time = currentSim.getTime();
     }
 }

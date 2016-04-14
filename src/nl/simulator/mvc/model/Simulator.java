@@ -2,19 +2,18 @@ package nl.simulator.mvc.model;
 
 import nl.simulator.mvc.view.*;
 
-
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Simulator implements Runnable {
 
-    // TODO Add more statistics
     private CarQueue entranceCarQueue;
     private CarQueue paymentCarQueue;
     private CarQueue exitCarQueue;
     private CarparkHandler carparkHandler;
     private Boolean running;
     private ArrayList<AbstractView> views;
+    private int[] fullTime;
 
     // Generates the initial amount of passholders
     private int maxPassHolder = 50;
@@ -39,18 +38,15 @@ public class Simulator implements Runnable {
 
     private Time time; // Variable to store the time in
 
-    public Simulator() {
+    public Simulator(CarparkHandler carparkHandler) {
+        this.carparkHandler = carparkHandler;
         entranceCarQueue = new CarQueue();
         paymentCarQueue = new CarQueue();
         exitCarQueue = new CarQueue();
         time = new Time();
         random = new Random();
         views =  new ArrayList<AbstractView>();
-    }
-
-    // To be converted to addViews, ArrayList<View>.
-    public void addCarparkHandler(CarparkHandler carparkHandler) {
-        this.carparkHandler = carparkHandler;
+        fullTime = new int[5];
     }
 
     public void run(int minutes) {
@@ -73,6 +69,13 @@ public class Simulator implements Runnable {
         while (running) {
             tick();
         }
+    }
+
+    public boolean isRunning() {
+        if (running == null) {
+            return false;
+        }
+        return running;
     }
 
     // Calculates average number of cars per hour and stores it in the averageNumberOfCars variable
@@ -229,9 +232,13 @@ public class Simulator implements Runnable {
         return exitCarQueue.size();
     }
 
+    public int[] getTime() {
+        return fullTime;
+    }
+
     private void tick() {
         //update time(duh)
-        int[] fullTime = time.updateTime();
+        fullTime = time.updateTime();
         setAvgNumberOfCarsPerHour(fullTime[2]);
         addCarsToQueue();
         assignToParkingSpot();

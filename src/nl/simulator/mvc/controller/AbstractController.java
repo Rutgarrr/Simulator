@@ -8,7 +8,7 @@ import javax.swing.*;
  * Created by Bugstorm on 9-4-2016.
  */
 public abstract class AbstractController extends JPanel {
-    protected Simulator model; //TODO Add new class model!
+    protected Simulator model;
 
     public AbstractController (Simulator model) {
         this.model = model;

@@ -26,7 +26,7 @@ public class Time {
     }
 
     private void incrHour(){
-        while (minute > 59) {
+        while (minute >= 59) {
             minute -= 60;
             hour++;
         }

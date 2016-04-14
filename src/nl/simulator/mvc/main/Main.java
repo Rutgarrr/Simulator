@@ -26,15 +26,12 @@ public class Main {
     private StatsView statsView;
 
     public Main() {
-        simulator = new Simulator();
         carparkHandler = new CarparkHandler(3, 6, 30);
+        simulator = new Simulator(carparkHandler);
         carParkView = new CarparkView(simulator, carparkHandler);
         simulatorController = new Controller(simulator);
 
-        simulator.addCarparkHandler(carparkHandler);
-
         screen =  new JFrame("Carpark simulator");
-        Container contentPane = screen.getContentPane();
         JPanel carPanel = new JPanel();
         carPanel.add(carParkView);
         screen.add(carPanel, BorderLayout.CENTER);
