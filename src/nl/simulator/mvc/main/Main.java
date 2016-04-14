@@ -8,6 +8,7 @@ import nl.simulator.mvc.controller.Controller;
 import nl.simulator.mvc.model.Simulator;
 import nl.simulator.mvc.view.CarparkView;
 import nl.simulator.mvc.model.CarparkHandler;
+import nl.simulator.mvc.view.StatsView;
 
 import java.awt.*;
 
@@ -22,6 +23,7 @@ public class Main {
     private CarparkView carParkView;
     private Controller simulatorController;
     private JFrame screen;
+    private StatsView statsView;
 
     public Main() {
         simulator = new Simulator();
@@ -37,6 +39,10 @@ public class Main {
         carPanel.add(carParkView);
         screen.add(carPanel, BorderLayout.CENTER);
         screen.add(simulatorController, BorderLayout.SOUTH);
+
+        statsView = new StatsView(simulator);
+        statsView.setLayout(new BoxLayout(statsView, BoxLayout.Y_AXIS));
+        screen.add(statsView, BorderLayout.EAST);
 
         screen.pack();
         screen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

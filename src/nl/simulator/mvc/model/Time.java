@@ -74,5 +74,11 @@ public class Time {
         return time;
     }
 
+    public int[] defaultTime(){
+        time[0] = 00;
+        time[1] = 00;
+        return time;
+    }
+
 
 }

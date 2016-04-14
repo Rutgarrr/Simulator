@@ -17,10 +17,11 @@ public class Simulator implements Runnable {
     private ArrayList<AbstractView> views;
 
     // Generates the initial amount of passholders
-    private int maxPassHolder = 20;
+    private int maxPassHolder = 50;
 
     //This variable keeps track of the amount of passholder car objects.
     private int passCarAmount = 0;
+    private int adHocCarAmount = 0;
 
     private int tickPause = 100;
 
@@ -97,13 +98,14 @@ public class Simulator implements Runnable {
     private void addCarsToQueue(){
 
         for (int i = 0; i < carsPerMinute(); i++) {
-            if(random.nextInt(100) < 5 && passCarAmount < maxPassHolder){
+            if(random.nextInt(100) < 10 && passCarAmount < maxPassHolder){
                 Car car = new PassHolderCar();
                 entranceCarQueue.addCar(car);
                 passCarAmount++;
             }else{
                 Car car = new AdHocCar();
                 entranceCarQueue.addCar(car);
+                adHocCarAmount++;
             }
         }
     }
@@ -170,6 +172,8 @@ public class Simulator implements Runnable {
             // If the leaving car is a passholder car, then decrease the amount of passCarAmount by one.
             if (car instanceof PassHolderCar){
                 passCarAmount--;
+            }else{
+                adHocCarAmount--;
             }
             // Bye!
         }
@@ -199,6 +203,30 @@ public class Simulator implements Runnable {
         for (AbstractView view:views) {
             view.updateView();
         }
+    }
+
+    public int getAdHocCarAmount(){
+        return adHocCarAmount;
+    }
+
+    public int getPassCarAmount(){
+        return passCarAmount;
+    }
+
+    public int totalAmountOfCars(){
+        return adHocCarAmount + passCarAmount;
+    }
+
+    public int totalCarsInEntrance(){
+        return entranceCarQueue.size();
+    }
+
+    public int totalCarsInPayment(){
+        return paymentCarQueue.size();
+    }
+
+    public int totalCarsInExit(){
+        return exitCarQueue.size();
     }
 
     private void tick() {
