@@ -5,13 +5,14 @@ import nl.simulator.mvc.view.SimulatorView;
 
 import java.util.Random;
 
-public class Simulator {
+public class Simulator implements Runnable {
 
     // TODO Add more statistics
     private CarQueue entranceCarQueue;
     private CarQueue paymentCarQueue;
     private CarQueue exitCarQueue;
     private SimulatorView simulatorView;
+    private Boolean running;
 
     // Generates the initial amount of passholders
     private int maxPassHolder = 20;
@@ -50,6 +51,22 @@ public class Simulator {
 
     public void run(int minutes) {
         for (int i = 0; i < minutes; i++) {
+            tick();
+        }
+    }
+
+    public void start() {
+        new Thread(this).start();
+    }
+
+    public void stop() {
+        running = false;
+    }
+
+    @Override
+    public void run() {
+        running = true;
+        while (running) {
             tick();
         }
     }
